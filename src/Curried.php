@@ -27,7 +27,7 @@ class Curried
         if (count($this->args) == $this->arity - count($arguments)) {
             return call_user_func_array($this->func, array_merge($this->args, $arguments));
         } else {
-            $curried = new Curried($this->func);
+            $curried = new Curried($this->func, $this->arity);
             foreach($arguments as $argument) {
                 $curried->args[] = $argument;
             }
