@@ -4,6 +4,7 @@
         "phpspec/phpspec": "^2.1"
     },
     "autoload": {
+        "files": ["src/helpers.php"],
         "psr-4": {
             "MeadSteve\\PhpCurry\\": "src/"
         }

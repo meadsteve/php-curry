@@ -1,10 +1,10 @@
 <?php
 
-use MeadSteve\PhpCurry\Curried;
+use function MeadSteve\PhpCurry\curry;
 
 require_once __DIR__ . "/vendor/autoload.php";
 
-$add = new Curried(function ($a, $b) {return $a + $b;});
+$add = curry(function ($a, $b) {return $a + $b;});
 $addOne = $add(1);
 $addTwo = $add(2);
 
