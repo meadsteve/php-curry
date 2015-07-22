@@ -2,6 +2,7 @@
 
 namespace spec\MeadSteve\PhpCurry;
 
+use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use MeadSteve\PhpCurry\Curried;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -21,5 +22,11 @@ class CurriedSpec extends ObjectBehavior
         $curried = new Curried($func);
         $helloFunction = $curried("hello");
         assert($helloFunction(" world") == "hello world");
+    }
+
+    function it_wont_wrap_non_callables()
+    {
+        $this->shouldThrow(new InvalidArgumentException);
+        $this->beConstructedWith("potato");
     }
 }

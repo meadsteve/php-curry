@@ -14,6 +14,9 @@ class Curried
 
     public function __construct($callable)
     {
+        if (!is_callable($callable)) {
+            throw new \InvalidArgumentException("Curried can only wrap a callable");
+        }
         $this->func = $callable;
         $this->setArity($callable);
     }
