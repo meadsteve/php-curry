@@ -12,13 +12,13 @@ class Curried
     private $args = [];
     private $arity;
 
-    public function __construct($callable)
+    public function __construct($callable, $arity = null)
     {
         if (!is_callable($callable)) {
             throw new \InvalidArgumentException("Curried can only wrap a callable");
         }
         $this->func = $callable;
-        $this->setArity($callable);
+        $this->setArity($callable, $arity);
     }
 
     public function __invoke()
@@ -35,8 +35,13 @@ class Curried
         }
     }
 
-    private function setArity($callable)
+    private function setArity($callable, $arity = null)
     {
+        if ($arity !== null) {
+            $this->arity = $arity;
+            return;
+        }
+
         if (is_array($callable)) {
             $reflected = new \ReflectionMethod($callable[0], $callable[1]);
             $this->arity = $reflected->getNumberOfParameters();
