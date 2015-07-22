@@ -23,6 +23,7 @@ class CurryWrapperSpec extends ObjectBehavior
         $wrapped = new CurryWrapper(new ExampleClass());
         $curried = $wrapped->helloWorld("Hello");
         assert($curried("world") == "Hello world");
+        assert($curried("moon") == "Hello moon");
     }
 }
 
