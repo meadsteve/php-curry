@@ -24,6 +24,13 @@ class CurriedSpec extends ObjectBehavior
         assert($helloFunction(" world") == "hello world");
     }
 
+    function it_can_be_called_with_more_than_one_arg()
+    {
+        $func = function ($hello, $world) {return $hello . $world;};
+        $this->beConstructedWith($func);
+        $this->__invoke("hello ", "world")->shouldEqual("hello world");
+    }
+
     function it_wont_wrap_non_callables()
     {
         $this->shouldThrow(new InvalidArgumentException);

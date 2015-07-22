@@ -21,13 +21,16 @@ class Curried
         $this->setArity($callable);
     }
 
-    public function __invoke($argument)
+    public function __invoke()
     {
-        if (count($this->args) == $this->arity - 1) {
-            return call_user_func_array($this->func, array_merge($this->args, [$argument]));
+        $arguments = func_get_args();
+        if (count($this->args) == $this->arity - count($arguments)) {
+            return call_user_func_array($this->func, array_merge($this->args, $arguments));
         } else {
             $curried = new Curried($this->func);
-            $curried->args[] = $argument;
+            foreach($arguments as $argument) {
+                $curried->args[] = $argument;
+            }
             return $curried;
         }
     }
