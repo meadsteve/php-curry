@@ -1,0 +1,6 @@
+suites:
+  default:
+    namespace: MeadSteve\PhpCurry
+    psr4_prefix: MeadSteve\PhpCurry
+    src_path: src
+    spec_prefix: spec

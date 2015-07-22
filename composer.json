@@ -1,0 +1,14 @@
+{
+    "name": "PhpCurry",
+    "require-dev": {
+        "phpspec/phpspec": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "MeadSteve\\PhpCurry\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
