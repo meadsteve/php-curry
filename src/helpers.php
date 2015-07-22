@@ -1,11 +1,11 @@
 <?php
 namespace MeadSteve\PhpCurry;
 
-/**
- * @param $function
- * @return \callable
- */
-function curry($function)
+function curry($thing)
 {
-    return new Curried($function);
+    if (is_object($thing) && !($thing instanceof \Closure)) {
+        return new CurryWrapper($thing);
+    } else {
+        return new Curried($thing);
+    }
 }
