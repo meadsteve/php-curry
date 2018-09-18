@@ -1,4 +1,5 @@
 # php-curry
+[![Build Status](https://travis-ci.org/meadsteve/php-curry.svg?branch=master)](https://travis-ci.org/meadsteve/php-curry)
 
 Created for reasons. Probably slow due to reflection usage so I wouldn't use for anything real.
 
