@@ -8,8 +8,5 @@
         "psr-4": {
             "MeadSteve\\PhpCurry\\": "src/"
         }
-    },
-    "config": {
-        "bin-dir": "bin"
     }
 }
