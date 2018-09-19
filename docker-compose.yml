@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+    curry:
+        build:
+            context: ./
+        volumes:
+        - "./src:/app/src/"
+        - "./spec:/app/spec/"
+        - "./composer.json:/app/composer.json"
