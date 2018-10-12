@@ -9,10 +9,24 @@ class Curried
      */
     private $func;
 
+    /**
+     * @var array
+     */
     private $args = [];
+
+    /**
+     * @var int
+     */
     private $arity;
 
-    public function __construct($callable, $arity = null)
+    /**
+     * Curried constructor.
+     *
+     * @param callable $callable
+     * @param int|null $arity
+     * @throws \ReflectionException
+     */
+    public function __construct(callable $callable, $arity = null)
     {
         if (!is_callable($callable)) {
             throw new \InvalidArgumentException("Curried can only wrap a callable");
@@ -24,18 +38,26 @@ class Curried
     public function __invoke()
     {
         $arguments = func_get_args();
-        if (count($this->args) == $this->arity - count($arguments)) {
+        if (count($this->args) === $this->arity - count($arguments)) {
             return call_user_func_array($this->func, array_merge($this->args, $arguments));
-        } else {
-            $curried = new Curried($this->func, $this->arity);
-            foreach($arguments as $argument) {
-                $curried->args[] = $argument;
-            }
-            return $curried;
         }
+
+        $curried = new Curried($this->func, $this->arity);
+
+        foreach($arguments as $argument) {
+            $curried->args[] = $argument;
+        }
+
+        return $curried;
     }
 
-    private function setArity($callable, $arity = null)
+    /**
+     * @param callable $callable
+     * @param int|null $arity
+     * @return void
+     * @throws \ReflectionException
+     */
+    private function setArity(callable $callable, $arity = null)
     {
         if ($arity !== null) {
             $this->arity = $arity;
