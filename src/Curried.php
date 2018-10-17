@@ -15,7 +15,7 @@ class Curried
     private $args = [];
 
     /**
-     * @var int
+span class="pl-s1">      * @var integer
      */
     private $arity;
 
